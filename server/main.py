@@ -59,7 +59,6 @@ def get_result(request: TextRequest):
 
 weights1 = np.load("weights1.npy")
 bias1 = np.load("bias1.npy")
-print(bias1[0])
 
 @app.post("/classify-text")
 def get_result(request: TextRequest):

@@ -1,26 +1,9 @@
 from sentence_transformers import SentenceTransformer
 import numpy as np
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-
-app = FastAPI()
-
-origins = [
-    "http://localhost:3000"
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,            
-    allow_credentials=True,           
-    allow_methods=["*"],             
-    allow_headers=["*"],
-)
 
 class TextRequest(BaseModel):
     text: str
-
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
@@ -35,7 +18,6 @@ def softmax(z):
     exp_scores = np.exp(z)
     return exp_scores / np.sum(exp_scores)
 
-@app.post("/check-text")
 def get_result(request: TextRequest):
     try:
         text = request.text
@@ -60,7 +42,6 @@ def get_result(request: TextRequest):
 weights1 = np.load("weights1.npy")
 bias1 = np.load("bias1.npy")
 
-@app.post("/classify-text")
 def get_result(request: TextRequest):
     try:
         text = request.text

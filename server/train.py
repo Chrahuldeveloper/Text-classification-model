@@ -5,7 +5,7 @@ import numpy as np
 
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-df  = pd.read_csv("./data.csv")
+df  = pd.read_csv("./data/data.csv")
 
 X  = model.encode(
     df["text"].tolist(),
@@ -41,7 +41,7 @@ print("done")
 
 
 # text classification
-df  = pd.read_csv("./data1.csv")
+df  = pd.read_csv("./data/data1.csv")
 
 X = model.encode(df["text"].to_list(),show_progress_bar=True)
 Y = df["label"].to_numpy()

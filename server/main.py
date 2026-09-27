@@ -68,11 +68,12 @@ def get_result(request: TextRequest):
         z = embedding @ weights1 + bias1
         probability = softmax(z)
         print(probability.tolist()[0])
+        categories = ["Sports", "Science", "Politics"]
         return {
             "sports": probability.tolist()[0][0],
             "science": probability.tolist()[0][1],
             "politics": probability.tolist()[0][2],
-            "ans" : int(np.argmax(probability.tolist()[0]))
+            "ans" : categories[int(np.argmax(probability.tolist()[0]))]
         }
     except Exception as e:
         print(e)        

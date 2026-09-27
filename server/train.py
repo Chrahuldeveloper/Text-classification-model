@@ -41,7 +41,6 @@ print("done")
 
 
 # text classification
-
 df  = pd.read_csv("./data1.csv")
 
 X = model.encode(df["text"].to_list(),show_progress_bar=True)
